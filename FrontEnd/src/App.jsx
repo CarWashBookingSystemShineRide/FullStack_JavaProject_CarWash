@@ -1,8 +1,8 @@
-import Login from './Login'
+import Mainpage from './Mainpage'
 import './App.css'
 
 function App() {
-  return <Login />
+  return <Mainpage />
 }
 
 export default App
