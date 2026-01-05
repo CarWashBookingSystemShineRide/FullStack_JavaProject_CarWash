@@ -1,49 +1,71 @@
-import React from "react";
-import "./App.css";
+import React, { useState } from 'react'
 
-const Mainpage = () => {
-	return (
-		<div className="dashboard-hero">
-			<header className="hero-header">
-				<div className="logo">LuxeWash</div>
-				<nav className="hero-nav">
-					<a className="nav-link">Home</a>
-					<a className="nav-link">Service</a>
-					<a className="nav-link">Pricing</a>
-					<a className="nav-link">Contact</a>
-					<div className="nav-actions">
-						<a className="nav-link login">Login</a>
-						<button className="btn register">Register</button>
-					</div>
-				</nav>
-			</header>
+export default function Mainpage() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-			<div className="hero-content">
-				<span className="badge">Premium Car Care Since 2009</span>
-				<h1 className="hero-title">
-					PREMIUM CAR WASH
-					<br />
-					<span className="hero-sub">&amp; DETAILING SERVICES</span>
-				</h1>
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // placeholder - integrate auth later
+    console.log('Sign in', { email, password })
+  }
 
-				<p className="hero-lead">
-					Professional care for your car — fast, safe, and reliable. Experience the
-					luxury your vehicle deserves.
-				</p>
+  return (
+    <div>
+      <header className="site-header">
+        <div className="site-brand">
+          <div className="logo-box">🚗</div>
+          <div>
+            <div style={{fontSize:18}}>LuxeWash</div>
+            <div style={{fontSize:11, marginTop:2}}>Premium Car Care</div>
+          </div>
+        </div>
+        <nav className="site-nav">
+          <a className="nav-link" href="#">Home</a>
+          <a className="nav-link" href="#">Service</a>
+          <a className="nav-link" href="#">Pricing</a>
+          <a className="nav-link" href="#">Contact</a>
+          <a className="nav-link" href="#">Login</a>
+          <a className="nav-link register" href="#">Register</a>
+        </nav>
+      </header>
 
-				<div className="hero-cta">
-					<button className="btn primary">Book now →</button>
-					<button className="btn outline">View Services</button>
-				</div>
+      <main className="page-wrap">
+        <div className="signin-wrapper">
+          <div className="signin-card">
+            <h2>Welcome Back</h2>
+            <p className="lead">Sign in to access your account</p>
 
-				<ul className="hero-features">
-					<li>100% Satisfaction</li>
-					<li>Express Service</li>
-					<li>5-Star Rated</li>
-				</ul>
-			</div>
-		</div>
-	);
-};
+            <form onSubmit={handleSubmit}>
+              <div className="form-row">
+                <label htmlFor="email">Email Address</label>
+                <input id="email" className="form-control" value={email} onChange={e=>setEmail(e.target.value)} placeholder="john@example.com" />
+              </div>
 
-export default Mainpage;
+              <div className="form-row">
+                <label htmlFor="password">Password</label>
+                <input id="password" type="password" className="form-control" value={password} onChange={e=>setPassword(e.target.value)} placeholder="•••••••" />
+              </div>
+
+              <div className="form-actions">
+                <label className="remember"><input type="checkbox" /> Remember Me</label>
+                <a className="forgot" href="#">Forgot password?</a>
+              </div>
+
+              <div style={{textAlign:'center', marginTop:18}}>
+                <button type="submit" className="btn-primary">Sign In</button>
+              </div>
+            </form>
+
+            <div style={{textAlign:'center', marginTop:12, fontSize:12, color:'#8a6f66'}}>Don't have an account? <a href="#">Register now</a></div>
+
+            <div className="btn-social">
+              <button aria-label="Continue with Google">G continue with Google</button>
+              <button aria-label="Continue with Apple"> continue with Apple</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  )
+}
